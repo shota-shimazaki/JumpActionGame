@@ -1,7 +1,5 @@
 package jp.techacademy.shota.shimazaki.jumpactiongame;
 
-
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
@@ -13,7 +11,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
-public class ResultScreen extends ScreenAdapter{
+
+public class ResultScreen extends ScreenAdapter {
 
     static final float GUI_WIDTH = 320;
     static final float GUI_HEIGHT = 480;
@@ -30,7 +29,7 @@ public class ResultScreen extends ScreenAdapter{
 
         mGame = game;
 
-        if(mGame.mRequestHandler ! = null){
+        if (mGame.mRequestHandler != null){
             mGame.mRequestHandler.showAds(true);
         }
 
@@ -49,30 +48,29 @@ public class ResultScreen extends ScreenAdapter{
 
 
         mFont = new BitmapFont(Gdx.files.internal("font.fnt"), Gdx.files.internal("font.png"), false);
-
     }
 
-        @Override
-        public void render( float delta){
+    @Override
+    public void render(float delta) {
 
-            Gdx.gl.glClearColor(0, 0, 0, 1);
-            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-            mGuiCamera.update();
-            mGame.batch.setProjectionMatrix(mGuiCamera.combined);
+        mGuiCamera.update();
+        mGame.batch.setProjectionMatrix(mGuiCamera.combined);
 
-            mGame.batch.begin();
-            mBg.draw(mGame.batch);
-            mFont.draw(mGame.batch, "Score:" + mScore, 0, GUI_HEIGHT / 2 + 40, GUI_WIDTH, Align.center, false);
-            mFont.draw(mGame.batch, "Retry?", 0, GUI_HEIGHT / 2 - 40, GUI_WIDTH, Align.center, false);
-            mGame.batch.end();
+        mGame.batch.begin();
+        mBg.draw(mGame.batch);
+        mFont.draw(mGame.batch, "Score:" + mScore, 0, GUI_HEIGHT / 2 + 40, GUI_WIDTH, Align.center, false);
+        mFont.draw(mGame.batch, "Retry?", 0, GUI_HEIGHT / 2 - 40, GUI_WIDTH, Align.center, false);
+        mGame.batch.end();
 
-            if (Gdx.input.justTouched()) {
-                if(mGame.mRequestHandler ! = null){
-                    mGame.mRequestHandler.showAds(false);
-                }
-                mGame.setScreen(new GameScreen(mGame));
+
+        if (Gdx.input.justTouched()) {
+            if (mGame.mRequestHandler != null) {
+                mGame.mRequestHandler.showAds(false);
             }
+            mGame.setScreen(new GameScreen(mGame));
         }
     }
-
+}
